@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+body{
+  background-color: #505050;
+  margin:20px 20px 0px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#background{
+  background-color:white;
+  border-radius:20px 20px 0 0;
+  padding:10px;
+
+  height:71vh;
+}
+
+#navbar{
+  background-color:white;
+  height:20vh;
+  padding:10px;
+  display:flex;
+  justify-content: center;
+}
+
+#navbar img{
+  cursor: pointer;
+  user-select:none;
+}
+
+.letter{
+  font-size: 80px;
+  color: white;
+
+  background-color: darkcyan;
+  width:fit-content;
+  height:fit-content;
+  padding:0px 40px 20px;
+  margin:20px;
+  border-radius:30px;
+
+  user-select:none;
+
+  position: absolute;
+
+  min-height: 100px;
+  min-width: 40px;
+
+  cursor: pointer;
+}
+
+/* TODO
+- Improve letters ( font, size, padding )
+- Improve fridge background
+*/
