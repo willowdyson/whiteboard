@@ -1,6 +1,11 @@
 var elem; // declared globally due to function passing issues
 
 $(document).onload = letterCreate(7, true); // 8 starter letters
+$(document).keypress(function(e) {
+    letterCreate(0,false,e.key);
+});
+$('#shuffle').on('click', function(){letterCreate(0,true)});
+$('#clear').on('click', function(){letterClear()});
 
 function letterMove(item){ // setting up the event listeners for mousemove on element click
     var elem = item
@@ -121,13 +126,16 @@ function randPlacement(element){ // places all elements randomly on the page
     $(element).css({top: randHeight, left: randWidth});
 }
 
-$('#shuffle').on('click', function(){letterCreate(0,true)});
+function letterClear(){
+    $('.letter').each(function(){
+        $(this).remove();
+    });
+}
 
 // TODO
-// add limitations to prevent going off the edges or touching other boxes
-// add keyboard input to create more letters
-// find a way to disconnect a word, perhaps doubleclick?
-// change zindex on pickup and drop
-// add ui buttons at bottom e.i clear, random letter
-// place deconstructed letters nearby eachother
 // improve box collision detecting
+// add limitations to prevent going off the edges or touching other boxes
+
+// change zindex on pickup and drop
+// add ui buttons at bottom e.i clear
+// place deconstructed letters nearby eachother
