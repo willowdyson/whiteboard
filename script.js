@@ -21,50 +21,87 @@ function letterMove(item){ // setting up the event listeners for mousemove on el
     })
 }
 
-function letterDrop(item){ // when letter put down, testing if other elements are nearby, and combining them
-
+function letterDrop(item){
     elem = item;
+    var runOnce = false;
 
-    // Test if close to other elements
-
-    $('.letter').each(function(i){
-        if (elem != $('.letter')[i]){
+    $('.letter').each(function(){
+        if (elem != this){
+            // get center of dropped element
             var elemCoords = $(elem).position();
             elemCoords.top += $(elem).outerHeight() / 2;
             elemCoords.left += $(elem).outerWidth() / 2;
 
-            var compareElem = $('.letter')[i];
-            if (typeof compareElem !== 'undefined'){
-                var compareElemCoords = $(compareElem).position();
+            // get corners of other element
+            var altTopLeft = $(this).position();
 
-                compareElemCoords.top += $(compareElem).outerHeight() / 2;
-                compareElemCoords.left += $(compareElem).outerWidth() / 2;
+            var altTopRight = $(this).position();
+            altTopRight.left += $(this).outerWidth();
 
-                if(compareElemCoords.top >= elemCoords.top - (($(elem).outerHeight() / 2) + 100) && compareElemCoords.top <= elemCoords.top + (($(elem).outerHeight() / 2) + 100)){
-                    if(compareElemCoords.left >= elemCoords.left - (($(elem).outerWidth() / 2) + 100) && compareElemCoords.left <= elemCoords.left){
+            var altBottomLeft = $(this).position();
+            altBottomLeft.top += $(this).outerHeight();
 
-                        var combinedHTML = "";
+            var altBottomRight = $(this).position();
+            altBottomRight.left += $(this).outerWidth();
+            altBottomRight.top += $(this).outerHeight();
+            
+            // check if corner is within boundary
+            for (i=0;i<4;i++){
+                var altCoords;
+                switch (i){
+                    case 0:
+                        altCoords = altTopLeft;
+                        //console.log(altCoords.top + " " + altCoords.left);
+                        break;
+
+                    case 1:
+                        altCoords = altTopRight;
+                        //console.log(altCoords.top + " " + altCoords.left);
+                        break;
+
+                    case 2:
+                        altCoords = altBottomLeft;
+                        //console.log(altCoords.top + " " + altCoords.left);
+                        break;
+
+                    case 3:
+                        altCoords = altBottomRight;
+                        //console.log(altCoords.top + " " + altCoords.left);
+                        break;
+                }
+        
+                if((elemCoords.top - ($(elem).outerHeight()/2)) - 100 < altCoords.top && altCoords.top < (elemCoords.top + ($(elem).outerHeight())/2)+ 100){
+                    if((elemCoords.left - ($(elem).outerWidth())/2) - 100  < altCoords.left && altCoords.left < elemCoords.left){
+                        if (runOnce == false){
+                            var combinedHTML = "";
                         
-                        combinedHTML += $(compareElem).html() + ' ';
-                        combinedHTML += $(elem).html();
-                        var colourAvg = $.xcolor.average($(elem).css('background-color'),$(compareElem).css('background-color'));
-                        $(elem).css('background-color',colourAvg);
-                        $(compareElem).remove();
-                        $(elem).html(combinedHTML);
+                            combinedHTML += $(this).html() + ' ';
+                            combinedHTML += $(elem).html();
+                            var colourAvg = $.xcolor.average($(elem).css('background-color'),$(this).css('background-color'));
+                            $(elem).css('background-color',colourAvg);
+                            $(this).remove();
+                            $(elem).html(combinedHTML);
+
+                            runOnce = true;
+                        }
                         
-                    } else if (compareElemCoords.left <= elemCoords.left + (($(elem).outerWidth() / 2) + 100) && compareElemCoords.left >= elemCoords.left){
-                        var combinedHTML = "";
-    
-                        combinedHTML += $(elem).html() + ' ';
-                        combinedHTML += $(compareElem).html();
-                        var colourAvg = $.xcolor.average($(elem).css('background-color'),$(compareElem).css('background-color'));
-                        $(elem).css('background-color',colourAvg);
-                        $(compareElem).remove();
-                        $(elem).html(combinedHTML);
+                    } else if(elemCoords.left < altCoords.left && altCoords.left < (elemCoords.left + ($(elem).outerWidth()/2)) + 100){
+                        if (runOnce == false){
+                            var combinedHTML = "";
+        
+                            combinedHTML += $(elem).html() + ' ';
+                            combinedHTML += $(this).html();
+                            var colourAvg = $.xcolor.average($(elem).css('background-color'),$(this).css('background-color'));
+                            $(elem).css('background-color',colourAvg);
+                            $(this).remove();
+                            $(elem).html(combinedHTML);
+
+                            runOnce = true;
+                        }
                     }
                 }
             }
-        } 
+        }
     });
 }
 
@@ -135,7 +172,9 @@ function letterClear(){
 // TODO
 // improve box collision detecting
 // add limitations to prevent going off the edges or touching other boxes
+// delete element on drop on clear button
 
 // change zindex on pickup and drop
-// add ui buttons at bottom e.i clear
 // place deconstructed letters nearby eachother
+// add size scaling?
+// add movement?? panning?
