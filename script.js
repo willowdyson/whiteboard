@@ -25,6 +25,21 @@ function letterDrop(item){
     elem = item;
     var runOnce = false;
 
+    var clearTopLeft = $('#clear').position();
+    var clearBtmRight = $('#clear').position();
+    clearBtmRight.top += $('#clear').outerHeight();
+    clearBtmRight.left += $('#clear').outerWidth();
+
+    var elemCoords = $(elem).position();
+    elemCoords.top += $(elem).outerHeight() / 2;
+    elemCoords.left += $(elem).outerWidth() / 2;
+
+    // check if on clear button before merging
+    if((clearTopLeft.top < elemCoords.top && elemCoords.top < clearBtmRight.top) && (clearTopLeft.left < elemCoords.left && elemCoords.left < clearBtmRight.left)){
+        $(elem).remove();
+        return;
+    }
+
     $('.letter').each(function(){
         if (elem != this){
             // get center of dropped element
@@ -155,7 +170,7 @@ function letterSplit(item){ // dissassembles words on doubleclick
 
 function randPlacement(element){ // places all elements randomly on the page
     var randHeight = Math.floor(Math.random() * ($(window).height() - 175));
-    var randWidth = Math.floor(Math.random() * ($(window).width() - 175));
+    var randWidth = Math.floor(Math.random() * ($(window).width() - 185));
     $(element).css({top: randHeight +15, left: randWidth+15});
 }
 
@@ -166,9 +181,9 @@ function letterClear(){
 }
 
 // TODO
-// delete element on drop on clear button
 
 // change zindex on pickup and drop
 // place deconstructed letters nearby eachother
+
 // add size scaling?
 // add movement?? panning?
