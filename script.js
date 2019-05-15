@@ -9,6 +9,8 @@ $('#clear').on('click', function(){letterClear()});
 
 function letterMove(item){ // setting up the event listeners for mousemove on element click
     var elem = item
+
+    $(elem).css('z-index', 3000);
     $(document).off('mousemove'); // prevents eventlistener stacking
     $(document).on('mousemove', function(e){
         $(elem).css({top: (e.pageY - 80), left: e.pageX - 80});
@@ -25,6 +27,7 @@ function letterDrop(item){
     elem = item;
     var runOnce = false;
 
+    $(elem).css('z-index', 1);
     var clearTopLeft = $('#clear').position();
     var clearBtmRight = $('#clear').position();
     clearBtmRight.top += $('#clear').outerHeight();
@@ -181,9 +184,6 @@ function letterClear(){
 }
 
 // TODO
-
-// change zindex on pickup and drop
-// place deconstructed letters nearby eachother
 
 // add size scaling?
 // add movement?? panning?

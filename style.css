@@ -46,6 +46,8 @@ body{
   min-width: 40px;
 
   cursor: pointer;
+
+  z-index:1;
 }
 
 /* TODO
