@@ -51,22 +51,18 @@ function letterDrop(item){
                 switch (i){
                     case 0:
                         altCoords = altTopLeft;
-                        //console.log(altCoords.top + " " + altCoords.left);
                         break;
 
                     case 1:
                         altCoords = altTopRight;
-                        //console.log(altCoords.top + " " + altCoords.left);
                         break;
 
                     case 2:
                         altCoords = altBottomLeft;
-                        //console.log(altCoords.top + " " + altCoords.left);
                         break;
 
                     case 3:
                         altCoords = altBottomRight;
-                        //console.log(altCoords.top + " " + altCoords.left);
                         break;
                 }
         
@@ -158,9 +154,9 @@ function letterSplit(item){ // dissassembles words on doubleclick
 }
 
 function randPlacement(element){ // places all elements randomly on the page
-    var randHeight = Math.floor(Math.random() * $(window).height());
-    var randWidth = Math.floor(Math.random() * $(window).width());
-    $(element).css({top: randHeight, left: randWidth});
+    var randHeight = Math.floor(Math.random() * ($(window).height() - 175));
+    var randWidth = Math.floor(Math.random() * ($(window).width() - 175));
+    $(element).css({top: randHeight +15, left: randWidth+15});
 }
 
 function letterClear(){
@@ -170,8 +166,6 @@ function letterClear(){
 }
 
 // TODO
-// improve box collision detecting
-// add limitations to prevent going off the edges or touching other boxes
 // delete element on drop on clear button
 
 // change zindex on pickup and drop
