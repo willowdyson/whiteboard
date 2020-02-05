@@ -5,12 +5,11 @@
 ToDo :
 - add size scaling?
 - add movement?? panning?
-- fix / improve letter detection
 - fix / improve button boundaries
 - some sort of tutorial?
 
 - Improve letters ( font, size, padding )
-- Improve fridge background
+- Improve background
 - Reize buttons
 
 ////////////////////////////////////////////////////////
@@ -33,3 +32,6 @@ The function selects a random X and Y value within the page border, then moves t
 
 letterClear():
 Deletes a given element.
+
+isCollide():
+Tests if two objects are touching eachother

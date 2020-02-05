@@ -26,6 +26,30 @@ function letterMove(item){ // setting up the event listeners for mousemove on el
     });
 }
 
+function isCollide(elem1, elem2) {
+
+    var a = {
+        height : $(elem1).outerHeight(),
+        width : $(elem1).outerWidth(),
+        y : $(elem1).position().top,
+        x : $(elem1).position().left
+    };
+
+    var b = {
+        height : $(elem2).outerHeight(),
+        width : $(elem2).outerWidth(),
+        y : $(elem2).position().top,
+        x : $(elem2).position().left
+    };
+
+    return !(
+        ((a.y + a.height) < (b.y)) ||
+        (a.y > (b.y + b.height)) ||
+        ((a.x + a.width) < b.x) ||
+        (a.x > (b.x + b.width))
+    );
+}
+
 function letterDrop(item){
     elem = item;
     var runOnce = false;
@@ -48,75 +72,33 @@ function letterDrop(item){
 
     $('.letter').each(function(){
         if (elem != this){
-            // get center of dropped element
-            var elemCoords = $(elem).position();
-            elemCoords.top += $(elem).outerHeight() / 2;
-            elemCoords.left += $(elem).outerWidth() / 2;
-
-            // get corners of other element
-            var altTopLeft = $(this).position();
-
-            var altTopRight = $(this).position();
-            altTopRight.left += $(this).outerWidth();
-
-            var altBottomLeft = $(this).position();
-            altBottomLeft.top += $(this).outerHeight();
-
-            var altBottomRight = $(this).position();
-            altBottomRight.left += $(this).outerWidth();
-            altBottomRight.top += $(this).outerHeight();
             
-            // check if corner is within boundary
-            for (i=0;i<4;i++){
-                var altCoords;
-                switch (i){
-                    case 0:
-                        altCoords = altTopLeft;
-                        break;
+            if (isCollide(elem,this)){
+                if ($(elem).position().left < ($(this).position().left + ($(this).outerWidth()/2))){
+                    if (runOnce == false){
+                        combinedHTML = "";
+    
+                        combinedHTML += $(elem).html() + ' ';
+                        combinedHTML += $(this).html();
+                        colourAvg = $.xcolor.average($(elem).css('background-color'),$(this).css('background-color'));
+                        $(elem).css('background-color',colourAvg);
+                        $(this).remove();
+                        $(elem).html(combinedHTML);
 
-                    case 1:
-                        altCoords = altTopRight;
-                        break;
+                        runOnce = true;
+                    }
+                } else {
+                    if (runOnce == false){
+                        combinedHTML = "";
+                    
+                        combinedHTML += $(this).html() + ' ';
+                        combinedHTML += $(elem).html();
+                        colourAvg = $.xcolor.average($(elem).css('background-color'),$(this).css('background-color'));
+                        $(elem).css('background-color',colourAvg);
+                        $(this).remove();
+                        $(elem).html(combinedHTML);
 
-                    case 2:
-                        altCoords = altBottomLeft;
-                        break;
-
-                    case 3:
-                        altCoords = altBottomRight;
-                        break;
-                }
-                
-                var combinedHTML, colourAvg;
-
-                if((elemCoords.top - ($(elem).outerHeight()/2)) - 100 < altCoords.top && altCoords.top < (elemCoords.top + ($(elem).outerHeight())/2)+ 100){
-                    if((elemCoords.left - ($(elem).outerWidth())/2) - 100  < altCoords.left && altCoords.left < elemCoords.left){
-                        if (runOnce == false){
-                            combinedHTML = "";
-                        
-                            combinedHTML += $(this).html() + ' ';
-                            combinedHTML += $(elem).html();
-                            colourAvg = $.xcolor.average($(elem).css('background-color'),$(this).css('background-color'));
-                            $(elem).css('background-color',colourAvg);
-                            $(this).remove();
-                            $(elem).html(combinedHTML);
-
-                            runOnce = true;
-                        }
-                        
-                    } else if(elemCoords.left < altCoords.left && altCoords.left < (elemCoords.left + ($(elem).outerWidth()/2)) + 100){
-                        if (runOnce == false){
-                            combinedHTML = "";
-        
-                            combinedHTML += $(elem).html() + ' ';
-                            combinedHTML += $(this).html();
-                            colourAvg = $.xcolor.average($(elem).css('background-color'),$(this).css('background-color'));
-                            $(elem).css('background-color',colourAvg);
-                            $(this).remove();
-                            $(elem).html(combinedHTML);
-
-                            runOnce = true;
-                        }
+                        runOnce = true;
                     }
                 }
             }
