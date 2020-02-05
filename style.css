@@ -42,9 +42,6 @@ body{
 
   position: absolute;
 
-  min-height: 100px;
-  min-width: 40px;
-
   cursor: pointer;
 
   z-index:1;

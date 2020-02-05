@@ -3,18 +3,19 @@
 ////////////////////////////////////////////////////////
 
 ToDo :
-- add size scaling?
 - add movement?? panning?
 - fix / improve button boundaries
 - some sort of tutorial?
 
-- Improve letters ( font, size, padding )
+- Improve letters ( font )
 - Improve background
-- Reize buttons
+
+-game: get a set amount of letters, have to make the longest word
 
 ////////////////////////////////////////////////////////
 
 Functions :
+
 letterMove(item): 
 Ensures the letter is in front of other characters, then positions it at the position of the mouse. Triggers letterDrop function.
 
