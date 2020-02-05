@@ -1,4 +1,5 @@
 var elem; // declared globally due to function passing issues
+var fontSize = 100;
 
 $(document).onload = letterCreate(7, true); // 8 starter letters
 $(document).keypress(function(e) {
@@ -6,6 +7,8 @@ $(document).keypress(function(e) {
 });
 $('#shuffle').on('click', function(){letterCreate(0,true);});
 $('#clear').on('click', function(){letterClear();});
+$('#larger').on('click', function(){fontSize += 40;});
+$('#smaller').on('click', function(){fontSize -= 40;});
 
 function letterMove(item){ // setting up the event listeners for mousemove on element click
     var elem = item;
@@ -129,7 +132,7 @@ function letterCreate(count, randBool, char){ // function to create letters rand
         var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','a','a','b','c','d','e','e','f','g','h','i','i','k','l','m','n','o','o','p','r','s','t','u','u','y'];
     
         for (f = 0; f <= count; f++){
-            $('#background').append('<div class="letter" id="selected"></div>');
+            $('body').append('<div class="letter" id="selected"></div>');
             newLetter = $('#selected');
 
             randAlphabet = Math.floor(Math.random() * 50);
@@ -137,6 +140,7 @@ function letterCreate(count, randBool, char){ // function to create letters rand
 
             $(newLetter).html(alphabet[randAlphabet]);
             $(newLetter).css('background-color',randHex);
+            $(newLetter).css('font-size',fontSize);
 
             $(newLetter).on('mousedown', function(e){letterMove(e.target);});
             $(newLetter).on('dblclick', function(e){letterSplit(e.target);});
@@ -145,12 +149,13 @@ function letterCreate(count, randBool, char){ // function to create letters rand
             randPlacement(newLetter);
         }
     } else if (randBool == false){
-        $('#background').append('<div class="letter" id="selected"></div>');
+        $('body').append('<div class="letter" id="selected"></div>');
         newLetter = $('#selected');
         randHex = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 
         $(newLetter).html(char);
         $(newLetter).css('background-color',randHex);
+        $(newLetter).css('font-size',fontSize);
 
         $(newLetter).on('mousedown', function(e){letterMove(e.target);});
         $(newLetter).on('dblclick', function(e){letterSplit(e.target);});

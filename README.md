@@ -3,11 +3,15 @@
 ////////////////////////////////////////////////////////
 
 ToDo :
-add size scaling?
-add movement?? panning?
-fix / improve letter detection
-fix / improve button boundaries
-some sort of tutorial?
+- add size scaling?
+- add movement?? panning?
+- fix / improve letter detection
+- fix / improve button boundaries
+- some sort of tutorial?
+
+- Improve letters ( font, size, padding )
+- Improve fridge background
+- Reize buttons
 
 ////////////////////////////////////////////////////////
 

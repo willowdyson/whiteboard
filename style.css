@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
 body{
-  background-color: #505050;
-  margin:20px 20px 0px;
+  background-color: white;
+  margin:20px 20px 0px 20px;
   font-family: 'Ubuntu', sans-serif;
 }
 
-#background{
+/* #background{
   background-color:white;
   border-radius:20px 20px 0 0;
   padding:10px;
 
   height:71vh;
-}
+} */
 
 #navbar{
   background-color:white;
@@ -49,9 +49,3 @@ body{
 
   z-index:1;
 }
-
-/* TODO
-- Improve letters ( font, size, padding )
-- Improve fridge background
-- Reize buttons
-*/
