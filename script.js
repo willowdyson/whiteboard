@@ -4,11 +4,11 @@ $(document).onload = letterCreate(7, true); // 8 starter letters
 $(document).keypress(function(e) {
     letterCreate(0,false,e.key);
 });
-$('#shuffle').on('click', function(){letterCreate(0,true)});
-$('#clear').on('click', function(){letterClear()});
+$('#shuffle').on('click', function(){letterCreate(0,true);});
+$('#clear').on('click', function(){letterClear();});
 
 function letterMove(item){ // setting up the event listeners for mousemove on element click
-    var elem = item
+    var elem = item;
 
     $(elem).css('z-index', 3000);
     $(document).off('mousemove'); // prevents eventlistener stacking
@@ -20,7 +20,7 @@ function letterMove(item){ // setting up the event listeners for mousemove on el
         $(document).off('mouseup');
 
         letterDrop(item);
-    })
+    });
 }
 
 function letterDrop(item){
@@ -83,15 +83,17 @@ function letterDrop(item){
                         altCoords = altBottomRight;
                         break;
                 }
-        
+                
+                var combinedHTML, colourAvg;
+
                 if((elemCoords.top - ($(elem).outerHeight()/2)) - 100 < altCoords.top && altCoords.top < (elemCoords.top + ($(elem).outerHeight())/2)+ 100){
                     if((elemCoords.left - ($(elem).outerWidth())/2) - 100  < altCoords.left && altCoords.left < elemCoords.left){
                         if (runOnce == false){
-                            var combinedHTML = "";
+                            combinedHTML = "";
                         
                             combinedHTML += $(this).html() + ' ';
                             combinedHTML += $(elem).html();
-                            var colourAvg = $.xcolor.average($(elem).css('background-color'),$(this).css('background-color'));
+                            colourAvg = $.xcolor.average($(elem).css('background-color'),$(this).css('background-color'));
                             $(elem).css('background-color',colourAvg);
                             $(this).remove();
                             $(elem).html(combinedHTML);
@@ -101,11 +103,11 @@ function letterDrop(item){
                         
                     } else if(elemCoords.left < altCoords.left && altCoords.left < (elemCoords.left + ($(elem).outerWidth()/2)) + 100){
                         if (runOnce == false){
-                            var combinedHTML = "";
+                            combinedHTML = "";
         
                             combinedHTML += $(elem).html() + ' ';
                             combinedHTML += $(this).html();
-                            var colourAvg = $.xcolor.average($(elem).css('background-color'),$(this).css('background-color'));
+                            colourAvg = $.xcolor.average($(elem).css('background-color'),$(this).css('background-color'));
                             $(elem).css('background-color',colourAvg);
                             $(this).remove();
                             $(elem).html(combinedHTML);
@@ -121,35 +123,37 @@ function letterDrop(item){
 
 function letterCreate(count, randBool, char){ // function to create letters randomly or from a given letter
 
+    var newLetter,randHex;
+
     if (randBool == true) {
         var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','a','a','b','c','d','e','e','f','g','h','i','i','k','l','m','n','o','o','p','r','s','t','u','u','y'];
     
         for (f = 0; f <= count; f++){
             $('#background').append('<div class="letter" id="selected"></div>');
-            var newLetter = $('#selected');
+            newLetter = $('#selected');
 
-            var randAlphabet = Math.floor(Math.random() * 50);
-            var randHex = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+            randAlphabet = Math.floor(Math.random() * 50);
+            randHex = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 
             $(newLetter).html(alphabet[randAlphabet]);
             $(newLetter).css('background-color',randHex);
 
-            $(newLetter).on('mousedown', function(e){letterMove(e.target)});
-            $(newLetter).on('dblclick', function(e){letterSplit(e.target)});
+            $(newLetter).on('mousedown', function(e){letterMove(e.target);});
+            $(newLetter).on('dblclick', function(e){letterSplit(e.target);});
 
             $(newLetter).removeAttr('id');
             randPlacement(newLetter);
         }
     } else if (randBool == false){
         $('#background').append('<div class="letter" id="selected"></div>');
-        var newLetter = $('#selected');
-        var randHex = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+        newLetter = $('#selected');
+        randHex = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 
         $(newLetter).html(char);
         $(newLetter).css('background-color',randHex);
 
-        $(newLetter).on('mousedown', function(e){letterMove(e.target)});
-        $(newLetter).on('dblclick', function(e){letterSplit(e.target)});
+        $(newLetter).on('mousedown', function(e){letterMove(e.target);});
+        $(newLetter).on('dblclick', function(e){letterSplit(e.target);});
 
         $(newLetter).removeAttr('id');
         randPlacement(newLetter);
@@ -182,8 +186,3 @@ function letterClear(){
         $(this).remove();
     });
 }
-
-// TODO
-
-// add size scaling?
-// add movement?? panning?
