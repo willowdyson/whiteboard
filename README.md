@@ -10,7 +10,7 @@ ToDo :
 - Improve letters ( font )
 - Improve background
 
--game: get a set amount of letters, have to make the longest word
+- game: get a set amount of letters, have to make the longest word
 
 ////////////////////////////////////////////////////////
 

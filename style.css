@@ -2,17 +2,8 @@
 
 body{
   background-color: white;
-  margin:20px 20px 0px 20px;
   font-family: 'Ubuntu', sans-serif;
 }
-
-/* #background{
-  background-color:white;
-  border-radius:20px 20px 0 0;
-  padding:10px;
-
-  height:71vh;
-} */
 
 #navbar{
   background-color:white;
@@ -45,4 +36,21 @@ body{
   cursor: pointer;
 
   z-index:1;
+}
+
+#cntMenu {
+  display:flex;
+  justify-content: center;
+
+  height:70vh;
+}
+
+#cntMenu img {
+  height:10vw;
+  width:10vw;
+  padding-bottom:15px;
+}
+
+h1 {
+  font-size: 150px;
 }
