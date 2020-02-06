@@ -1,15 +1,6 @@
 var elem; // declared globally due to function passing issues
 var fontSize = 100;
 
-$(document).onload = letterCreate(5, true); // starter letters
-$(document).keypress(function(e) {
-    letterCreate(0,false,e.key);
-});
-$('#shuffle').on('click', function(){letterCreate(0,true);});
-$('#clear').on('click', function(){letterClear();});
-$('#larger').on('click', function(){if(fontSize < 300){fontSize += 40;}});
-$('#smaller').on('click', function(){if(fontSize > 60)fontSize -= 40;});
-
 function letterMove(item){ // setting up the event listeners for mousemove on element click
     var elem = item;
 
@@ -77,7 +68,7 @@ function letterDrop(item){
                 if ($(elem).position().left < ($(this).position().left + ($(this).outerWidth()/2))){
                     if (runOnce == false){
                         combinedHTML = "";
-    
+                        
                         combinedHTML += $(elem).html() + ' ';
                         combinedHTML += $(this).html();
                         colourAvg = $.xcolor.average($(elem).css('background-color'),$(this).css('background-color'));
