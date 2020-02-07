@@ -36,3 +36,6 @@ Deletes a given element.
 
 isCollide():
 Tests if two objects are touching eachother
+
+timerStart():
+Displays a gameplay timer, and starts counting down

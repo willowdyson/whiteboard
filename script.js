@@ -1,5 +1,5 @@
 var elem; // declared globally due to function passing issues
-var fontSize = 100;
+var fontSize = 60;
 
 function letterMove(item){ // setting up the event listeners for mousemove on element click
     var elem = item;
@@ -45,21 +45,24 @@ function letterDrop(item){
     elem = item;
     var runOnce = false;
 
-    $(elem).css('z-index', 1);
-    var clearTopLeft = $('#clear').position();
-    var clearBtmRight = $('#clear').position();
-    clearBtmRight.top += $('#clear').outerHeight();
-    clearBtmRight.left += $('#clear').outerWidth();
+    if(window.location.href == 'file:///C:/Users/treed/Desktop/Projects/whiteboard/main/freeplay.html'){
+        $(elem).css('z-index', 1);
+        var clearTopLeft = $('#clear').position();
+        var clearBtmRight = $('#clear').position();
+        clearBtmRight.top += $('#clear').outerHeight();
+        clearBtmRight.left += $('#clear').outerWidth();
 
-    var elemCoords = $(elem).position();
-    elemCoords.top += $(elem).outerHeight() / 2;
-    elemCoords.left += $(elem).outerWidth() / 2;
+        var elemCoords = $(elem).position();
+        elemCoords.top += $(elem).outerHeight() / 2;
+        elemCoords.left += $(elem).outerWidth() / 2;
 
-    // check if on clear button before merging
-    if((clearTopLeft.top < elemCoords.top && elemCoords.top < clearBtmRight.top) && (clearTopLeft.left < elemCoords.left && elemCoords.left < clearBtmRight.left)){
-        $(elem).remove();
-        return;
+        // check if on clear button before merging
+        if((clearTopLeft.top < elemCoords.top && elemCoords.top < clearBtmRight.top) && (clearTopLeft.left < elemCoords.left && elemCoords.left < clearBtmRight.left)){
+            $(elem).remove();
+            return;
+        }
     }
+    
 
     $('.letter').each(function(){
         if (elem != this){
@@ -166,4 +169,27 @@ function letterClear(){
     $('.letter').each(function(){
         $(this).remove();
     });
+}
+
+function timerStart(mins,secs,time){
+    $('body').append('<div class="head" id="timer"></div>');
+    var timer = $('#timer');
+    $(timer).html(time);
+
+    var clock = setInterval(function() {
+        -- secs;
+
+        if(secs.toString().length == 1) { secs = '0' + secs;}
+        $(timer).html(mins + ":" + secs);
+        
+        if (secs==0){
+            --mins;
+            if (mins==-1){
+                clearInterval(clock);
+                gameOver();
+            } else {
+                secs = 60;
+            }
+        }
+    }, 1000);
 }
