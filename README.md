@@ -3,11 +3,9 @@
 ////////////////////////////////////////////////////////
 
 ToDo :
-- add movement?? panning?
-- fix / improve button boundaries
+- fix / improve freeplay button boundaries
 - some sort of tutorial?
 
-- Improve letters ( font )
 - Improve background
 
 - game: get a set amount of letters, have to make the longest word

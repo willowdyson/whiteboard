@@ -1,5 +1,6 @@
 var elem; // declared globally due to function passing issues
 var fontSize = 60;
+var score;
 
 function letterMove(item){ // setting up the event listeners for mousemove on element click
     var elem = item;

@@ -1,15 +1,10 @@
 var timeLeft;
-
-// step two : create the letters and timer
-// step three : start the timer
+score = 0;
 
 // on timer end -> count up points -> send to victory screen
 // on pause button -> hide letters, pause timer -> show pause button
 
-// diferences between easy, medium and hard:
-// easy: 2 mins. 50 letters?
-// medium: 1 min. 40 letters?
-// hard: 30 seconds: 30 letters? no word disbanding
+// hard -> no word disbanding
 
 $('#btnEasy').on('click', function(){easy();});
 $('#btnMedium').on('click', function(){medium();});
@@ -33,9 +28,18 @@ function hard(){
     $('#cntMode').remove();
 
     letterCreate(30, true);
-    timerStart(0,30,'0:30');
+    timerStart(0,5,'0:45');
 }
 
 function gameOver(){
     
+    $('.letter').each(function(){
+        elem = $(this).text();
+        if(elem.length > 1){
+            console.log(elem);
+            ++score;
+        }
+    });
+
+    window.location.href ="score.html";
 }
