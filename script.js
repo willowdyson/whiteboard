@@ -1,6 +1,7 @@
 var elem; // declared globally due to function passing issues
 var fontSize = 60;
 var score;
+var points;
 
 function letterMove(item){ // setting up the event listeners for mousemove on element click
     var elem = item;
@@ -186,6 +187,8 @@ function timerStart(mins,secs,time){
         if (secs==0){
             --mins;
             if (mins==-1){
+                score = 0;
+                points = 0;
                 clearInterval(clock);
                 gameOver();
             } else {
@@ -193,4 +196,17 @@ function timerStart(mins,secs,time){
             }
         }
     }, 1000);
+}
+
+function gameOver(){
+    $('.letter').each(function(){
+        elem = $(this).text();
+        if(elem.length > 1){
+            ++score;
+        }
+    });
+
+    localStorage.setItem("score",score);
+    localStorage.setItem("points",points);
+    window.location.href ="score.html";
 }

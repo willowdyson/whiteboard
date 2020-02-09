@@ -30,16 +30,3 @@ function hard(){
     letterCreate(30, true);
     timerStart(0,5,'0:45');
 }
-
-function gameOver(){
-    
-    $('.letter').each(function(){
-        elem = $(this).text();
-        if(elem.length > 1){
-            console.log(elem);
-            ++score;
-        }
-    });
-
-    window.location.href ="score.html";
-}
