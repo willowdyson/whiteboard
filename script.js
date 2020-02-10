@@ -1,6 +1,6 @@
 var elem; // declared globally due to function passing issues
 var fontSize = 60;
-var score;
+var words;
 var points;
 
 function letterMove(item){ // setting up the event listeners for mousemove on element click
@@ -173,7 +173,7 @@ function letterClear(){
     });
 }
 
-function timerStart(mins,secs,time){
+function timerStart(mins,secs,time){ // gameplay timer, depending on the passed variables to set time
     $('body').append('<div class="head" id="timer"></div>');
     var timer = $('#timer');
     $(timer).html(time);
@@ -187,7 +187,7 @@ function timerStart(mins,secs,time){
         if (secs==0){
             --mins;
             if (mins==-1){
-                score = 0;
+                words = 0;
                 points = 0;
                 clearInterval(clock);
                 gameOver();
@@ -198,15 +198,22 @@ function timerStart(mins,secs,time){
     }, 1000);
 }
 
-function gameOver(){
+function gameOver(){ // count up the players points
+    var value;
     $('.letter').each(function(){
         elem = $(this).text();
         if(elem.length > 1){
-            ++score;
+            ++words;
+            value = 1;
+            elem = elem.replace(/\s/g, ''); // remove spaces
+            for (i = 0; i < elem.length; i++) {
+                points += value;
+                ++value;
+            }
         }
     });
 
-    localStorage.setItem("score",score);
+    localStorage.setItem("score",words);
     localStorage.setItem("points",points);
     window.location.href ="score.html";
 }

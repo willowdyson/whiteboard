@@ -3,12 +3,10 @@
 ////////////////////////////////////////////////////////
 
 ToDo :
-- fix / improve freeplay button boundaries
-- some sort of tutorial?
-
-- Improve background
-
-- game: get a set amount of letters, have to make the longest word
+- implement libary checker
+- add all icons (pause)
+- main screen background
+- general aesthetics improvements
 
 ////////////////////////////////////////////////////////
 
