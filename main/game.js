@@ -1,11 +1,6 @@
 var timeLeft;
 score = 0;
 
-// on timer end -> count up points -> send to victory screen
-// on pause button -> hide letters, pause timer -> show pause button
-
-// hard -> no word disbanding
-
 $('#btnEasy').on('click', function(){easy();});
 $('#btnMedium').on('click', function(){medium();});
 $('#btnHard').on('click', function(){hard();});
@@ -28,5 +23,5 @@ function hard(){
     $('#cntMode').remove();
 
     letterCreate(30, true);
-    timerStart(0,5,'0:45');
+    timerStart(0,45,'0:45');
 }

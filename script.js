@@ -47,7 +47,7 @@ function letterDrop(item){
     elem = item;
     var runOnce = false;
 
-    if(window.location.href == 'file:///C:/Users/treed/Desktop/Projects/whiteboard/main/freeplay.html'){
+    if(window.location.href == 'main/freeplay.html'){
         $(elem).css('z-index', 1);
         var clearTopLeft = $('#clear').position();
         var clearBtmRight = $('#clear').position();
@@ -96,6 +96,12 @@ function letterDrop(item){
 
                         runOnce = true;
                     }
+                }
+                
+                if(valWord(combinedHTML.replace(/\s/g, ''))){
+                    $(elem).css({"text-decoration": "underline"});
+                } else {
+                    $(elem).css({"text-decoration": "none"});
                 }
             }
         }
@@ -216,4 +222,21 @@ function gameOver(){ // count up the players points
     localStorage.setItem("score",words);
     localStorage.setItem("points",points);
     window.location.href ="score.html";
+}
+
+// Library Lookup
+
+var dict = {};
+
+function loadDict(){
+    $.get( "../assets/en.txt", function( txt ) {
+        words = txt.split( "\n" );
+        for ( var i = 0; i < words.length; i++ ) {
+            dict[words[i]] = true;
+        }
+    });
+}
+
+function valWord(word) {
+    return(dict[word]);
 }

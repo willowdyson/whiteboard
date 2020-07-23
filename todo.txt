@@ -1,0 +1,16 @@
+menu background - light colour animated circles?
+gameplay background - light circles? maybe something to follow cursor?
+add all icons (pause)
+better button border radii
+favicon
+general aesthetics improvements
+different a font?
+resize to relative values - menu & game selection
+uniform colours for ingame?
+more letters on freeplay
+
+make library file smaller *
+find better library or remove two letter words
+change onload event if i only need it loading for score page? **
+score calculator in score page
+add border to correct words to make them more visible?
