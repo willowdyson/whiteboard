@@ -1,10 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu');
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
 
 body{
   background-color: white;
   font-family: 'Fjalla One', sans-serif;
   overflow: hidden;
+  user-select: none;
 }
 
 #navbar{
@@ -24,6 +26,7 @@ body{
   font-size: 80px;
   color: white;
 
+  font-family: 'Poppins', sans-serif;
   background-color: darkcyan;
   width:fit-content;
   height:fit-content;
@@ -32,25 +35,36 @@ body{
   border-radius:30px;
 
   user-select:none;
-
   position: absolute;
-
   cursor: pointer;
 
   z-index:1;
 }
 
-#cntMenu img {
-  height:9vw;
-  width:9vw;
-  padding-bottom:15px;
-}
-
-.head {
-  font-size: 115px;
-}
-
-table {
+.cntMenu {
   display:flex;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width:100vw;
+  height:90vh;
+  overflow: hidden;
+}
+
+.cntMenu img {
+  width:30vh;
+  background-color:#b8e3e9;
+  padding:1vw;
+  border-radius: 15%;
+}
+
+.head{
+  font-size: 15vw;
+  
+}
+
+@media only screen and (max-height: 950px) {
+  .head{
+    font-size: 12.5vh;
+  }
 }

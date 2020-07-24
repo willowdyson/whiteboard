@@ -1,16 +1,31 @@
+Game Looks : Add
+
 menu background - light colour animated circles?
 gameplay background - light circles? maybe something to follow cursor?
-add all icons (pause)
-better button border radii
-favicon
-general aesthetics improvements
-different a font?
-resize to relative values - menu & game selection
 uniform colours for ingame?
-more letters on freeplay
+favicon
 
-make library file smaller *
-find better library or remove two letter words
-change onload event if i only need it loading for score page? **
+Game Looks : Fix
+
+add all icons (pause) - make pretty *** redo images (clear/delete, main title, shuffle, pause)  ***********
+
+Game Function : Add
+
+add pause capabilities - put size options in pause too
 score calculator in score page
-add border to correct words to make them more visible?
+list of completed words at the end
+
+Game Function : Fix
+
+make library file smaller - johnresig.com/blog/dictionary-lookups-in-javascript/
+better button border radii -- remove shapes when dropped on delete button (code already exists. fix it)
+better word dissasembly mechanics?drop them nearby?
+
+11 tasks
+
+
+
+Extra Games :
+youre given a word and have to spell it when it disappears
+youre given letters from a selection of words, with no spares, and you make all the words, highlighted when correct
+word explodes and you reassemble it as fast as possible

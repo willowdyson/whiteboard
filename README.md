@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////
 
 ToDo :
-- implement libary checker
+- implement score
 - add all icons (pause)
 - main screen background
 - general aesthetics improvements

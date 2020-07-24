@@ -97,10 +97,12 @@ function letterDrop(item){
                         runOnce = true;
                     }
                 }
-                
                 if(valWord(combinedHTML.replace(/\s/g, ''))){
+                    var borderColour = $.xcolor.lighten($(elem).css( "background-color" ));
                     $(elem).css({"text-decoration": "underline"});
+                    $(elem).css({"border": "solid "+ borderColour +" 10px"});
                 } else {
+                    $(elem).css({"border": "none"});
                     $(elem).css({"text-decoration": "none"});
                 }
             }
@@ -232,11 +234,13 @@ function loadDict(){
     $.get( "../assets/en.txt", function( txt ) {
         words = txt.split( "\n" );
         for ( var i = 0; i < words.length; i++ ) {
-            dict[words[i]] = true;
+            if(words[i].length > 2){
+                dict[words[i]] = true;
+            }
         }
     });
 }
 
-function valWord(word) {
+function valWord(word){
     return(dict[word]);
 }

@@ -1,6 +1,8 @@
-$(document).onload = letterCreate(5, true); // starter letters
+$(document).onload = letterCreate(20, true); // starter letters
 $(document).keypress(function(e) {
-    letterCreate(0,false,e.key);
+    if (e.key != " "){
+       letterCreate(0,false,e.key); 
+    }
 });
 
 $('#shuffle').on('click', function(){letterCreate(0,true);});
