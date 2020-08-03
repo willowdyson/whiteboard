@@ -6,5 +6,6 @@ $(document).onload = end();
 function end(){
     var score = localStorage.getItem("score");
     var points = localStorage.getItem("points");
-    $('#optScore').text("You created " + score + " words, for " + points + " points");
+    var words = localStorage.getItem("words");
+    $('#optScore').text("You created " + score + " words, " + points + " points");
 }

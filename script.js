@@ -1,6 +1,7 @@
 var elem; // declared globally due to function passing issues
 var fontSize = 60;
 var words;
+var wordsAmt;
 var points;
 
 function letterMove(item){ // setting up the event listeners for mousemove on element click
@@ -195,8 +196,9 @@ function timerStart(mins,secs,time){ // gameplay timer, depending on the passed 
         if (secs==0){
             --mins;
             if (mins==-1){
-                words = 0;
+                wordsAmt = 0;
                 points = 0;
+                words = [];
                 clearInterval(clock);
                 gameOver();
             } else {
@@ -207,22 +209,19 @@ function timerStart(mins,secs,time){ // gameplay timer, depending on the passed 
 }
 
 function gameOver(){ // count up the players points
-    var value;
-    $('.letter').each(function(){
-        elem = $(this).text();
-        if(elem.length > 1){
-            ++words;
-            value = 1;
-            elem = elem.replace(/\s/g, ''); // remove spaces
-            for (i = 0; i < elem.length; i++) {
-                points += value;
-                ++value;
-            }
+    $('.letter').each(function() {
+        if($(this).css("text-decoration").includes("underline")){
+            elem = $(this).text().replace(/\s/g, '');
+            words.push(elem);
+            wordsAmt++;
+
+            points += (elem.length * ((elem.length + 1) / 2));
         }
     });
 
-    localStorage.setItem("score",words);
+    localStorage.setItem("score",wordsAmt);
     localStorage.setItem("points",points);
+    localStorage.setItem("words",words);
     window.location.href ="score.html";
 }
 
@@ -243,4 +242,20 @@ function loadDict(){
 
 function valWord(word){
     return(dict[word]);
+}
+
+function mouseReady(){
+    var mouseX = 0, mouseY = 0;
+    var xp = 0, yp = 0;
+     
+    $(document).mousemove(function(e){
+      mouseX = e.pageX - ($(".cursor").width() / 2);
+      mouseY = e.pageY - ($(".cursor").width() / 2);
+    });
+      
+    setInterval(function(){
+      xp += ((mouseX - xp)/6);
+      yp += ((mouseY - yp)/6);
+      $(".cursor").css({left: xp +'px', top: yp +'px'});
+    }, 20);
 }

@@ -60,11 +60,19 @@ body{
 
 .head{
   font-size: 15vw;
-  
 }
 
 @media only screen and (max-height: 950px) {
   .head{
     font-size: 12.5vh;
   }
+}
+
+.cursor {
+  position: absolute;
+  z-index: -1;
+  background-color: rgb(241, 179, 179);
+	width: 8vw; 
+	height: 8vw; 
+  border-radius: 50%;  
 }
