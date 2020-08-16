@@ -71,8 +71,20 @@ body{
 .cursor {
   position: absolute;
   z-index: -1;
-  background-color: rgb(241, 179, 179);
+  background-color: red;
+  opacity: 0.4;
 	width: 8vw; 
 	height: 8vw; 
   border-radius: 50%;  
+}
+
+.bgCircle {
+  width:6vw;
+  height:6vw;
+  background-color: rgb(139, 153, 231);
+  background-color: rgb(187, 139, 231);
+  opacity: 0.4;
+  border-radius: 50%;
+  position: absolute;
+  z-index: -35;
 }

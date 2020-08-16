@@ -258,4 +258,83 @@ function mouseReady(){
       yp += ((mouseY - yp)/6);
       $(".cursor").css({left: xp +'px', top: yp +'px'});
     }, 20);
+
+    movingBg();
+}
+
+function movingBg(){
+
+    var circleAmt = (Math.floor(Math.random() * 5) + 10);
+    
+    for (i=0;i<circleAmt;i++){
+        $('body').append('<div class="bgCircle" id="selected"></div>');
+        var size = (Math.floor(Math.random() * 120) + 150);
+        switch(Math.floor(Math.random() * 2)){
+            case 0:
+                colour = "rgb(139, 153, 231)";
+                break;
+            case 1:
+                colour = "rgb(187, 139, 231)";
+                break;
+        }
+        $("#selected").css({width: size, height: size, backgroundColor: colour});
+        var coordTop = (Math.floor(Math.random() * ($(document).height() - ($("#selected").height() * 1.5))));
+        var coordLeft = (Math.floor(Math.random() * ($(document).width() - $("#selected").width())));
+
+        $("#selected").css({top: coordTop, left: coordLeft});
+
+        var curElem = document.getElementById("selected");
+        $("#selected").removeAttr('id');
+        hitEdge(curElem);
+    }
+}
+
+function hitEdge(elem){
+    $(elem).attr('id', 'selected'); 
+    var side = Math.floor(Math.random() * 4);
+    var aimTop, aimLeft;
+
+    if($("#selected").position().top == 20 && side == 0){
+        side++;
+    } else if($("#selected").position().top == ($(document).height() - $("#selected").width() - 20) && side == 1){
+        side++;
+    } else if($("#selected").position().left == 25 && side == 2){
+        side++;
+    } else if($("#selected").position().left == ($(document).width() - $("#selected").width() - 25) && side == 3){
+        side = 0;
+    }
+
+    switch (side){
+        case 0:
+            aimTop = 20; // top
+            aimLeft = (Math.floor(Math.random() * ($(document).width() - $("#selected").width())));
+            break;
+        case 1:
+            aimTop = $(document).height() - $("#selected").width() - 20; // btm
+            aimLeft = (Math.floor(Math.random() * ($(document).width() - $("#selected").width())));
+            break;
+        case 2:
+            aimLeft = 25; // left
+            aimTop = (Math.floor(Math.random() * ($(document).height() - ($("#selected").height() * 1.5))));
+            break;
+        case 3:
+            aimLeft = $(document).width() - $("#selected").width() - 25; // right
+            aimTop = (Math.floor(Math.random() * ($(document).height() - ($("#selected").height() * 1.5))));
+            break;
+    }
+
+    var speed = calcDistance($("#selected").position().left,$("#selected").position().top,aimLeft,aimTop);
+    speed *= 5;
+
+    $("#selected").animate({
+        top:aimTop,
+        left:aimLeft
+    },{duration: speed, complete: function(){hitEdge(this);}});
+    $("#selected").removeAttr('id');
+}
+
+function calcDistance(x1,y1,x2,y2){
+    var distance;
+    distance = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
+    return distance;
 }

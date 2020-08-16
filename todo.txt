@@ -1,6 +1,5 @@
 Game Looks : Add
 
-menu & gameplay background - light colour animated circles?
 uniform colours for ingame?
 
 Game Looks : Fix
@@ -9,7 +8,7 @@ add all icons (pause) - make pretty *** redo images (clear/delete, main title, s
 
 Game Function : Add
 
-add pause capabilities - put size options in pause too
+add pause capabilities - put size options in pause too & dark mode
 list of completed words at the end
 
 Game Function : Fix
@@ -18,7 +17,7 @@ make library file smaller - johnresig.com/blog/dictionary-lookups-in-javascript/
 better button border radii -- remove shapes when dropped on delete button (code already exists. fix it)
 better word dissasembly mechanics?drop them nearby?
 
-8 tasks
+7 tasks
 
 
 
