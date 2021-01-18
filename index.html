@@ -12,11 +12,26 @@
 <body onload="mouseReady()">
 
     <div class="cursor"></div>
+
+    <div class="btnContainer">
+        <input id="darkSwitch" type="checkbox"/>
+        <label for="darkSwitch">
+            <div id="rays">
+                <div id="sun"></div>
+            </div>
+            <div id="moon"></div>
+        </label>
+
+        <input id="bgSwitch" type="checkbox"/>
+        <label for="bgSwitch" id="bgLabel"></label>
+    </div>
     
-    <div class="cntMenu">
+    <div class="cntMenu" id="frontPage">
         <div class="head">Spectral</div>
-        <a href="main/game.html"><img id="btnGameplay" src="assets/play.svg"></a>
-        <a href="main/freeplay.html"><img id="btnFreeplay" src="assets/freeplay.svg"></a>
+        <div id="cntSubs">
+            <u><p class="sub" onclick="location.href='main/game.html';">Game</p></u>
+            <u><p class="sub" onclick="location.href='main/freeplay.html';">Freeplay</p></u>
+        </div>
     </div>
 
     <script src="script.js"></script>

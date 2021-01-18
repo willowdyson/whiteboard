@@ -1,6 +1,7 @@
 Game Looks : Add
 
-uniform colours for ingame?
+dark mode saving. 
+dark mode looks.
 
 Game Looks : Fix
 
@@ -10,16 +11,24 @@ Game Function : Add
 
 add pause capabilities - put size options in pause too & dark mode
 list of completed words at the end
+catch for if someone isn't on a webserver and the library doesnt load
 
 Game Function : Fix
 
+better button border radius -- remove shapes when dropped on delete button (code already exists. fix it)
+better word dissasembly mechanics?drop them nearby? highlight for a second?
+menu background circles go too far down when mouse is over taskbar - getting size of the page from the wrong variable?
+
+
+8 tasks
+
+
+Extra Tasks :
+nice interactive tutorial on first load
 make library file smaller - johnresig.com/blog/dictionary-lookups-in-javascript/
-better button border radii -- remove shapes when dropped on delete button (code already exists. fix it)
-better word dissasembly mechanics?drop them nearby?
-
-7 tasks
-
-
+consider faster circle collision turnaround, as well as position changing with window resize
+uniform colours for ingame? could be a setting
+maybe improve word creation
 
 Extra Games :
 youre given a word and have to spell it when it disappears

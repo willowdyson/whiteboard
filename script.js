@@ -251,6 +251,7 @@ function mouseReady(){
     $(document).mousemove(function(e){
       mouseX = e.pageX - ($(".cursor").width() / 2);
       mouseY = e.pageY - ($(".cursor").width() / 2);
+      $(".cursor").css({opacity:0.1});
     });
       
     setInterval(function(){
@@ -264,7 +265,7 @@ function mouseReady(){
 
 function movingBg(){
 
-    var circleAmt = (Math.floor(Math.random() * 5) + 10);
+    var circleAmt = (Math.floor(Math.random() * 5) + 15);
     
     for (i=0;i<circleAmt;i++){
         $('body').append('<div class="bgCircle" id="selected"></div>');
@@ -338,3 +339,40 @@ function calcDistance(x1,y1,x2,y2){
     distance = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
     return distance;
 }
+
+// Buttons
+
+// BG shapes
+$("#bgSwitch").click(function(){
+    if(this.checked){
+        $(".bgCircle").stop(); 
+    } else {
+        $(".bgCircle").each(function(){
+            hitEdge(this);
+        });
+    }
+});
+
+// Dark Theme
+
+$("#darkSwitch").change(function(){
+    darkTheme();
+    if(this.checked){
+        $("body").attr("data-theme","dark");
+        $("#moon").animate({opacity:0},200);
+        $("#rays").animate({opacity:1},1000);
+        $(".cursor").css({background:"white"});
+    } else {
+        $("body").attr("data-theme","light");
+        $("#moon").animate({opacity:1},1000);
+        $("#rays").animate({opacity:0},200);
+        $(".cursor").css({background:"red"});
+    }
+  });
+  
+  function darkTheme(){
+    $(document).addClass("transition");
+     window.setTimeout(() => {
+       $(document).removeClass("transition");
+     }, 1000);
+  }
