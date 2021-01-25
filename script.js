@@ -1,8 +1,9 @@
 var elem; // declared globally due to function passing issues
-var fontSize = 60;
+var fontSize;
 var words;
 var wordsAmt;
 var points;
+var timer, clock;
 
 function letterMove(item){ // setting up the event listeners for mousemove on element click
     var elem = item;
@@ -184,10 +185,10 @@ function letterClear(){
 
 function timerStart(mins,secs,time){ // gameplay timer, depending on the passed variables to set time
     $('body').append('<div class="head" id="timer"></div>');
-    var timer = $('#timer');
+    timer = $('#timer');
     $(timer).html(time);
 
-    var clock = setInterval(function() {
+    clock = setInterval(function() {
         -- secs;
 
         if(secs.toString().length == 1) { secs = '0' + secs;}
@@ -345,11 +346,13 @@ function calcDistance(x1,y1,x2,y2){
 // BG shapes
 $("#bgSwitch").click(function(){
     if(this.checked){
-        $(".bgCircle").stop(); 
+        $(".bgCircle").stop();
+        localStorage.setItem("bg","stop");
     } else {
         $(".bgCircle").each(function(){
             hitEdge(this);
         });
+        localStorage.setItem("bg","start");
     }
 });
 
@@ -362,17 +365,54 @@ $("#darkSwitch").change(function(){
         $("#moon").animate({opacity:0},200);
         $("#rays").animate({opacity:1},1000);
         $(".cursor").css({background:"white"});
+        localStorage.setItem("theme","dark");
     } else {
         $("body").attr("data-theme","light");
         $("#moon").animate({opacity:1},1000);
         $("#rays").animate({opacity:0},200);
         $(".cursor").css({background:"red"});
+        localStorage.setItem("theme","light");
     }
   });
   
-  function darkTheme(){
-    $(document).addClass("transition");
-     window.setTimeout(() => {
-       $(document).removeClass("transition");
-     }, 1000);
-  }
+function darkTheme(){
+$(document).addClass("transition");
+    window.setTimeout(() => {
+    $(document).removeClass("transition");
+    }, 1000);
+}
+
+// Saving Darktheme // Lightheme
+
+$(document).ready(function(){
+    if (localStorage.getItem("theme") === null) {
+        localStorage.setItem("theme","light");
+    } else if(localStorage.getItem("theme") == "dark"){
+        $("body").attr("data-theme","dark");
+        $(".cursor").css({background:"white"});
+        $("#darkSwitch").prop("checked", true);
+    } else {
+        $("body").attr("data-theme","light");
+    }
+
+    if (localStorage.getItem("bg") === null) {
+        localStorage.setItem("bg","start");
+    } else if(localStorage.getItem("bg") == "stop"){
+        $("#bgSwitch").prop("checked", true);
+        setTimeout(() => {
+            $(".bgCircle").stop();
+        }, 10);
+        
+    }
+
+    if (localStorage.getItem("fSize") === null) {
+        localStorage.setItem("fSize",60);
+        fontSize = 60;
+    } else if(localStorage.getItem("fSize") == 40){
+        fontSize = 40;
+    } else if(localStorage.getItem("fSize") == 60){
+        fontSize = 60;
+    } else if(localStorage.getItem("fSize") == 100){
+        fontSize = 100;
+    }
+});

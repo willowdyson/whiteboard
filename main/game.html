@@ -11,12 +11,50 @@
     <script src="../plugins/jquery.xcolor.js"></script>
 </head>
 <body onload="loadDict()">
+
+    <div class="overlay"></div>
+    <div class="menu">
+        <div class="head">PAUSED</div>
+
+        <div id="switchContainer">
+            <input id="darkSwitch" type="checkbox"/>
+            <label for="darkSwitch">
+                <div id="rays">
+                    <div id="sun"></div>
+                </div>
+                <div id="moon"></div>
+            </label>
+        </div>
+
+        <div id="letterSizeTxt">Letter Size
+            <div id="switchWrap"> 
+                <p>-</p>
+                <div id="scaleCont">
+                    <div id="scaleOut">
+                        <div id="scaleMid"></div>
+                        <div id="scaleIn"></div>
+                        <div id="scaleSelect"> </div>
+                    </div>
+                </div>
+                <p>+</p>
+            </div>
+        </div>
+
+ 
+        <div id="menuOptions">
+            <div onclick="location.href='game.html';">Restart</div>
+            <div onclick="location.href='../index.html';">Home</div>
+        </div>
+ 
+    </div>
     
     <div class="cntMenu">
         <h1 class="head" style="cursor:pointer;" id="btnEasy">Easy</h1>
         <h1 class="head" style="cursor:pointer;" id="btnMedium">Medium</h1>
         <h1 class="head" style="cursor:pointer;" id="btnHard">Hard</h1>
     </div>
+
+    <div id="btnPause" class="head">II</div>
 
     <script src="../script.js"></script>
     <script src="game.js"></script>

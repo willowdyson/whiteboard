@@ -1,26 +1,27 @@
 Game Looks : Add
 
-dark mode saving. 
-dark mode looks.
+main menu hover effects
 
 Game Looks : Fix
 
-add all icons (pause) - make pretty *** redo images (clear/delete, main title, shuffle, pause)  ***********
+remake freeplay icons - b&w?
+make letters resize right by contverting px to vw
 
 Game Function : Add
 
-add pause capabilities - put size options in pause too & dark mode
-list of completed words at the end
-catch for if someone isn't on a webserver and the library doesnt load
+list of completed words at the end & home button
+catch for if someone isn't on a webserver and the library doesnt load             -----
+better word dissasembly mechanics? drop them nearby? highlight for a second?
 
 Game Function : Fix
 
-better button border radius -- remove shapes when dropped on delete button (code already exists. fix it)
-better word dissasembly mechanics?drop them nearby? highlight for a second?
-menu background circles go too far down when mouse is over taskbar - getting size of the page from the wrong variable?
+better button border radius -- remove shapes when dropped on delete button (code already exists. fix it)                      -----
+menu background circles go too far down when mouse is over taskbar - getting size of the page from the wrong variable?        -----
+change letter probabilities, eg with r and more common letters
+pausing at 2:00 breaks it          -----
 
 
-8 tasks
+10 tasks
 
 
 Extra Tasks :
@@ -28,7 +29,7 @@ nice interactive tutorial on first load
 make library file smaller - johnresig.com/blog/dictionary-lookups-in-javascript/
 consider faster circle collision turnaround, as well as position changing with window resize
 uniform colours for ingame? could be a setting
-maybe improve word creation
+maybe improve word creation mechanics
 
 Extra Games :
 youre given a word and have to spell it when it disappears
