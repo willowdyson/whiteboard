@@ -6,12 +6,14 @@ Game Looks : Fix
 
 remake freeplay icons - b&w?
 make letters resize right by contverting px to vw
+fix letter size inconsistency when saving
 
 Game Function : Add
 
 list of completed words at the end & home button
 catch for if someone isn't on a webserver and the library doesnt load             -----
 better word dissasembly mechanics? drop them nearby? highlight for a second?
+commit library to memory
 
 Game Function : Fix
 

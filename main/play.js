@@ -5,6 +5,7 @@ $('#btnEasy').on('click', function(){easy();});
 $('#btnMedium').on('click', function(){medium();});
 $('#btnHard').on('click', function(){hard();});
 
+// Move scale menu
 if(localStorage.getItem("fSize") == 40){
     $("#scaleSelect").css({left:"-4%"});
 } else if(localStorage.getItem("fSize") == 60){
